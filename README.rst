@@ -35,7 +35,7 @@ If you have any suggestions for improvements or bug fixes please create an issue
 Make sure to format and lint the code before creating PR
 
 ```
-rustfmt src/*
+cargo fmt --all
 ```
 
 For linting
