@@ -11,21 +11,21 @@ Building the project
 
 To build the project make sure to install `SFML` and `CSFML` first. On Debian based Linux (Ubuntu) run:
 
-```
+``
 sudo apt install libcsfml-dev libsfml-dev
-```
+``
 
 Then build with cargo as usual.
 
-```
+``
 cargo build
-```
+``
 
 And run the project
 
-```
+``
 cargo run
-```
+``
 
 Contributing
 ============
@@ -34,12 +34,12 @@ If you have any suggestions for improvements or bug fixes please create an issue
 
 Make sure to format and lint the code before creating PR
 
-```
+``
 cargo fmt --all
-```
+``
 
 For linting
 
-```
+``
 cargo clippy
-```
+``
