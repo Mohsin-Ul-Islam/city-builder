@@ -3,6 +3,7 @@ use crate::map::Map;
 use crate::tilemap::TileMapConfig;
 use crate::utils;
 
+use sfml::audio::Music;
 use sfml::graphics::*;
 use sfml::system::{Clock, Vector2f};
 use sfml::window::{Event, Key, Style};
@@ -11,6 +12,10 @@ pub struct Game {}
 
 impl Game {
     pub fn run() {
+        // run background music as the game starts
+        let mut background_music = Music::from_file("assets/audio/background.wav").unwrap();
+        background_music.play();
+
         // camera movement speed
         let camera_scroll_speed: f32 = 1000.0;
 
