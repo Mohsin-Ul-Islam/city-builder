@@ -1,3 +1,8 @@
+|ci|
+
+.. |ci| image:: https://github.com/Mohsin-Ul-Islam/city-builder/actions/workflows/ci.yml/badge.svg
+   :target:
+
 .. _SFML: http://www.sfml-dev.org/download.php
 .. _CSFML: http://www.sfml-dev.org/download/csfml/
 
