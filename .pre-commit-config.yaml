@@ -1,0 +1,38 @@
+fail_fast: true
+repos:
+  - repo: local
+    hooks:
+      - id: cz
+        stages: [commit-msg]
+        name: Check Commit Message
+        entry: cz check --commit-msg-file
+        language: system
+        pass_filenames: true
+        always_run: true
+
+      - id: clippy
+        stages: [push]
+        name: clippy
+        entry: |
+          cargo clippy --release --all-features
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: build
+        stages: [push]
+        name: build
+        entry: |
+          cargo build --release --all-features
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: test
+        stages: [push]
+        name: test
+        entry: |
+          cargo test --release --all-features
+        language: system
+        pass_filenames: false
+        always_run: true
