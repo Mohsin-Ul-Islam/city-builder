@@ -6,7 +6,7 @@ use crate::utils;
 use sfml::audio::Music;
 use sfml::graphics::*;
 use sfml::system::{Clock, Vector2f};
-use sfml::window::{Event, Key, Style};
+use sfml::window::{Cursor, Event, Key, Style};
 
 pub struct Game {}
 
@@ -15,6 +15,9 @@ impl Game {
         // run background music as the game starts
         let mut background_music = Music::from_file("assets/audio/background.ogg").unwrap();
         background_music.play();
+
+        // load cursor image
+        let cursor_image = Image::from_file("assets/images/cursor.png").unwrap();
 
         // camera movement speed
         let camera_scroll_speed: f32 = 1000.0;
@@ -36,6 +39,17 @@ impl Game {
         // limit framerate to 30 frames a second
         window.set_framerate_limit(30);
 
+        // set game cursor
+        unsafe {
+            let cursor = Cursor::from_pixels(
+                cursor_image.pixel_data(),
+                cursor_image.size(),
+                cursor_image.size(),
+            )
+            .unwrap();
+            window.set_mouse_cursor(&cursor);
+        }
+
         // load all game assets
         let sprite_sheet_texture =
             Texture::from_file("assets/spritesheets/building_tiles.png").unwrap();
@@ -44,8 +58,6 @@ impl Game {
 
         // initialize the game assets struct
         let mut sprite_sheet = Sprite::with_texture(&sprite_sheet_texture);
-
-        // game_assets.grass.set_origin((4.0, 4.0));
 
         // 2D world
         let world = Map::from_json_file("assets/maps/default.json");
