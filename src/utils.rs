@@ -10,5 +10,5 @@ pub fn isometric_to_screen(x: i32, y: i32, sprite: &Sprite) -> (f32, f32) {
     let xs = x0 + (x - y) * rect.width / 2;
     let ys = y0 + (x + y) * rect.height / 2;
 
-    return (xs as f32, ys as f32);
+    (xs as f32, ys as f32)
 }

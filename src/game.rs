@@ -39,22 +39,16 @@ impl Game {
         // load all game assets
         let sprite_sheet_texture =
             Texture::from_file("assets/spritesheets/building_tiles.png").unwrap();
-        // let sprite_config =
-        //     TileMapConfig::from_json_file("assets/spritesheets/building_tiles.json");
+        let sprite_config =
+            TileMapConfig::from_json_file("assets/spritesheets/building_tiles.json");
 
         // initialize the game assets struct
         let mut sprite_sheet = Sprite::with_texture(&sprite_sheet_texture);
-        let rect = Rect {
-            width: 133,
-            height: 127,
-            top: 762,
-            left: 0,
-        };
 
         // game_assets.grass.set_origin((4.0, 4.0));
 
         // 2D world
-        let _world = Map::from_json_file("assets/maps/default.json");
+        let world = Map::from_json_file("assets/maps/default.json");
 
         // clock
         let mut clock = Clock::start();
@@ -86,10 +80,26 @@ impl Game {
 
             window.clear(Color::WHITE);
 
-            sprite_sheet.set_texture_rect(&rect);
-            sprite_sheet.set_position(utils::isometric_to_screen(0, 0, &sprite_sheet));
+            for (i, row) in world.iter().enumerate() {
+                for (j, tile_id) in row.iter().enumerate() {
+                    let tile = sprite_config.at(tile_id);
 
-            window.draw(&sprite_sheet);
+                    sprite_sheet.set_texture_rect(&IntRect {
+                        top: tile.top,
+                        left: tile.left,
+                        width: tile.width,
+                        height: tile.height,
+                    });
+
+                    sprite_sheet.set_position(utils::isometric_to_screen(
+                        i as i32,
+                        j as i32,
+                        &sprite_sheet,
+                    ));
+                    window.draw(&sprite_sheet);
+                }
+            }
+
             window.set_view(&camera);
             window.display();
         }
