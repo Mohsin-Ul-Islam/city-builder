@@ -3,6 +3,7 @@ use crate::map::Map;
 use crate::tilemap::TileMapConfig;
 use crate::utils;
 
+use sfml::audio::Music;
 use sfml::graphics::*;
 use sfml::system::{Clock, Vector2f};
 use sfml::window::{Event, Key, Style};
@@ -11,6 +12,10 @@ pub struct Game {}
 
 impl Game {
     pub fn run() {
+        // run background music as the game starts
+        let mut background_music = Music::from_file("assets/audio/background.ogg").unwrap();
+        background_music.play();
+
         // camera movement speed
         let camera_scroll_speed: f32 = 1000.0;
 
@@ -34,8 +39,8 @@ impl Game {
         // load all game assets
         let sprite_sheet_texture =
             Texture::from_file("assets/spritesheets/building_tiles.png").unwrap();
-        let sprite_config =
-            TileMapConfig::from_json_file("assets/spritesheets/building_tiles.json");
+        // let sprite_config =
+        //     TileMapConfig::from_json_file("assets/spritesheets/building_tiles.json");
 
         // initialize the game assets struct
         let mut sprite_sheet = Sprite::with_texture(&sprite_sheet_texture);

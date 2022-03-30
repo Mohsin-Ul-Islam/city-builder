@@ -38,3 +38,14 @@ Make sure to format and lint the code before creating PR
 For linting
 
 ``cargo clippy``
+
+Credits
+======
+
+Background Music
+#################
+
+Chasing Daylight by Scott Buckley | www.scottbuckley.com.au
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/

@@ -1,5 +1,5 @@
-mod constants;
-mod game;
-mod map;
-mod tilemap;
-mod utils;
+pub mod constants;
+pub mod game;
+pub mod map;
+pub mod tilemap;
+pub mod utils;
