@@ -1,4 +1,4 @@
-use crate::constants::{SCREEN_HEIGHT, SCREEN_WIDTH};
+use crate::constants::{ASPECT_RATIO, SCREEN_HEIGHT, SCREEN_WIDTH};
 use crate::map::Map;
 use crate::tilemap::TileMapConfig;
 use crate::utils;
@@ -56,6 +56,7 @@ impl Game {
         while window.is_open() {
             let elapsed = clock.restart().as_seconds();
 
+            // handle input for navigation keys
             if Key::D.is_pressed() {
                 camera_position.x += camera_scroll_speed * elapsed;
             }
@@ -74,6 +75,25 @@ impl Game {
             while let Some(event) = window.poll_event() {
                 match event {
                     Event::Closed => window.close(),
+
+                    // handle input for mouse scrollwheel zoom in/out
+                    Event::MouseWheelScrolled { delta, .. } => {
+                        let mut size = camera.size();
+                        if delta < 0.0
+                            && (size.y as i32) < SCREEN_HEIGHT * 2
+                            && (size.x as i32) < SCREEN_WIDTH * 2
+                        {
+                            size.y += 100.0 * ASPECT_RATIO;
+                            size.x += 100.0 * ASPECT_RATIO;
+                        } else if delta >= 0.0
+                            && (size.y as i32) > SCREEN_HEIGHT
+                            && (size.x as i32) > SCREEN_WIDTH
+                        {
+                            size.y -= 100.0 * ASPECT_RATIO;
+                            size.x -= 100.0 * ASPECT_RATIO;
+                        }
+                        camera.set_size(size);
+                    }
                     _ => continue,
                 }
             }
