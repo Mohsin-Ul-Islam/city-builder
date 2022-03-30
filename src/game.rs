@@ -82,6 +82,11 @@ impl Game {
 
             for (i, row) in world.iter().enumerate() {
                 for (j, tile_id) in row.iter().enumerate() {
+                    // skip rendering if tile is blank
+                    if *tile_id == -1 {
+                        continue;
+                    }
+
                     let tile = sprite_config.at(tile_id);
 
                     sprite_sheet.set_texture_rect(&IntRect {
