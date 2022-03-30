@@ -14,6 +14,7 @@ impl Game {
     pub fn run() {
         // run background music as the game starts
         let mut background_music = Music::from_file("assets/audio/background.ogg").unwrap();
+        background_music.set_looping(true);
         background_music.play();
 
         // load cursor image
