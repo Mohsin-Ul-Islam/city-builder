@@ -42,6 +42,12 @@ For linting
 Credits
 ########
 
+Sprite Sheets
+==============
+
+www.kenney.nl
+
+
 Background Music
 =================
 
