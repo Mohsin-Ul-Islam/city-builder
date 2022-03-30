@@ -28,6 +28,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
     steps:
+      - name: install csfml
+        run: sudo apt update && sudo apt install libcsfml-dev -y
+
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
         with:
@@ -42,6 +45,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: install csfml
+        run: sudo apt update && sudo apt install libcsfml-dev -y
+
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
         with:
