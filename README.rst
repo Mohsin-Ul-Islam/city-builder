@@ -40,10 +40,10 @@ For linting
 ``cargo clippy``
 
 Credits
-======
+########
 
 Background Music
-#################
+=================
 
 Chasing Daylight by Scott Buckley | www.scottbuckley.com.au
 Music promoted by https://www.chosic.com/free-music/all/
